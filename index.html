@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>运动图片管理</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="r2-config.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>运动图片管理</h1>
+            <button id="settings-btn" class="settings-btn">设置</button>
+        </header>
+        
+        <main>
+            <div class="sidebar">
+                <h2>运动类型</h2>
+                <ul id="exercise-types" class="exercise-types">
+                    <!-- 运动类型列表将通过JS动态生成 -->
+                    <li class="loading">加载中...</li>
+                </ul>
+            </div>
+            
+            <div class="content">
+                <h2 id="current-type">请选择运动类型</h2>
+                <div id="image-grid" class="image-grid">
+                    <!-- 图片网格将通过JS动态生成 -->
+                </div>
+            </div>
+        </main>
+        
+        <button id="upload-btn" class="upload-btn">上传</button>
+    </div>
+    
+    <!-- 上传对话框 -->
+    <div id="upload-dialog" class="dialog">
+        <div class="dialog-content">
+            <h2>上传运动图片</h2>
+            <form id="upload-form">
+                <div class="form-group">
+                    <label for="exercise-type">运动类型</label>
+                    <input type="text" id="exercise-type" required list="exercise-type-list">
+                    <datalist id="exercise-type-list"></datalist>
+                </div>
+                <div class="form-group">
+                    <label for="action-name">动作名称</label>
+                    <input type="text" id="action-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="image-file">选择图片</label>
+                    <input type="file" id="image-file" accept="image/jpeg,image/png">
+                </div>
+                <div class="form-group">
+                    <label>或粘贴图片 (⌘V 或 Ctrl+V)</label>
+                    <div id="paste-area" class="paste-area">
+                        <div class="paste-placeholder">点击此处激活粘贴区域，或直接按⌘V(Mac)/Ctrl+V(Windows)粘贴</div>
+                        <img id="paste-preview" class="paste-preview" style="display: none;">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancel-upload">取消</button>
+                    <button type="submit">上传</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 图片查看器 -->
+    <div id="image-viewer" class="image-viewer">
+        <div class="viewer-content">
+            <button class="close-btn" id="close-viewer">&times;</button>
+            <button class="nav-btn prev-btn" id="prev-image">&lt;</button>
+            <div class="image-container">
+                <img id="viewer-image" src="" alt="">
+                <div class="image-info">
+                    <h3 id="viewer-title"></h3>
+                </div>
+            </div>
+            <button class="nav-btn next-btn" id="next-image">&gt;</button>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
