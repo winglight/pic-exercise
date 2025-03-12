@@ -344,3 +344,80 @@ main {
     width: 100%;
     height: 100%;
 }
+
+/* 添加响应式设计 */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .content {
+        padding: 1rem;
+    }
+    
+    .image-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .upload-btn {
+        bottom: 1rem;
+        right: 1rem;
+    }
+    
+    .dialog-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+    
+    .image-viewer .image-container {
+        max-width: 95%;
+    }
+    
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+    
+    .config-dialog {
+        width: 95%;
+        max-width: none;
+        padding: 1rem;
+    }
+}
+
+/* 针对更小屏幕的设备 */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .image-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+    
+    .image-card img {
+        height: 150px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .form-actions button {
+        width: 100%;
+    }
+    
+    .paste-area {
+        height: 120px;
+    }
+}
