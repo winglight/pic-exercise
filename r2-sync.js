@@ -216,8 +216,14 @@ export class R2Sync {
             // 按运动类型分组
             const groupedImages = {};
             images.forEach(image => {
+                // 从完整路径中去掉 app 名称前缀
+                const fullPath = image.name;
+                const pathWithoutApp = fullPath.startsWith(`${this.config.app}/`) 
+                    ? fullPath.substring(this.config.app.length + 1) 
+                    : fullPath;
+                
                 // 解析文件名格式: <运动类型>-<动作名称>.jpg|png
-                const match = image.name.match(/^([^-]+)-(.+)\.(jpg|jpeg|png)$/i);
+                const match = pathWithoutApp.match(/^([^-]+)-(.+)\.(jpg|jpeg|png)$/i);
                 if (match) {
                     const exerciseType = match[1];
                     if (!groupedImages[exerciseType]) {
@@ -225,6 +231,7 @@ export class R2Sync {
                     }
                     groupedImages[exerciseType].push({
                         ...image,
+                        name: fullPath, // 保留完整路径用于获取图片
                         exerciseType: exerciseType,
                         actionName: match[2],
                         extension: match[3]
