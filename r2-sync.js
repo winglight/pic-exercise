@@ -118,7 +118,7 @@ export class R2Sync {
                 <input type="text" id="token" value="${this.config.token}">
             </label>
             <label>
-                公开域名
+                公开域名（可选，不填则使用原始URL）
                 <input type="text" id="public-domain" value="${this.config.publicDomain}" placeholder="例如: r2.broyustudio.com">
             </label>
             <button id="save-config">Save</button>

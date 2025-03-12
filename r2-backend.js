@@ -38,6 +38,25 @@ var src_default = {
       if (request.method === "OPTIONS") {
         return handleOptions(request);
       }
+      
+      // 对于普通的 GET 请求（非 list 开头的路径），不验证 token
+      if (request.method === "GET" && !path.startsWith("list")) {
+        const object = await env.MY_BUCKET.get(path);
+        if (object === null) {
+          return new Response("Object Not Found", { status: 404, headers: corsHeaders });
+        }
+        const headers = new Headers();
+        object.writeHttpMetadata(headers);
+        headers.set("etag", object.httpEtag);
+        for (const [key, value] of Object.entries(corsHeaders)) {
+          headers.set(key, value);
+        }
+        return new Response(object.body, {
+          headers
+        });
+      }
+      
+      // 其他请求仍然需要验证 token
       const hasValidHeader = /* @__PURE__ */ __name((request2, env2) => {
         console.log(env2.AUTH_KEY_SECRET);
         return request2.headers.get("X-Custom-Auth-Key") === env2.AUTH_KEY_SECRET;
