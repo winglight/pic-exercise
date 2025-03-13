@@ -72,3 +72,21 @@
         margin-right: 0;
     }
 }
+
+/* 添加到文件末尾 */
+.config-dialog .config-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.config-dialog .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+    .config-dialog .button-container {
+        flex-direction: column;
+    }
+}

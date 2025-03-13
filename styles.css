@@ -115,6 +115,7 @@ main {
 
 .image-card h3 {
     font-size: 0.9rem;
+    color: #000;
     margin: 0;
     white-space: nowrap;
     overflow: hidden;

@@ -100,29 +100,33 @@ export class R2Sync {
         const configDialog = document.createElement("div");
         configDialog.className = "config-dialog";
         configDialog.innerHTML = `
-            <h2>R2 Config</h2>
-            <label>
-                Enable R2 sync
-                <input type="checkbox" id="r2-enabled" ${this.config.enabled ? 'checked' : ''}>
-            </label>
-            <label>
-                App
-                <input type="text" id="app" value="${this.config.app}">
-            </label>
-            <label>
-                URL
-                <input type="text" id="url" value="${this.config.url}">
-            </label>
-            <label>
-                Token
-                <input type="text" id="token" value="${this.config.token}">
-            </label>
-            <label>
-                公开域名（可选，不填则使用原始URL）
-                <input type="text" id="public-domain" value="${this.config.publicDomain}" placeholder="例如: r2.broyustudio.com">
-            </label>
-            <button id="save-config">Save</button>
-            <button id="close-config">Close</button>
+            <div class="config-content">
+                <h2>R2 Config</h2>
+                <label>
+                    Enable R2 sync
+                    <input type="checkbox" id="r2-enabled" ${this.config.enabled ? 'checked' : ''}>
+                </label>
+                <label>
+                    App
+                    <input type="text" id="app" value="${this.config.app}">
+                </label>
+                <label>
+                    URL
+                    <input type="text" id="url" value="${this.config.url}">
+                </label>
+                <label>
+                    Token
+                    <input type="text" id="token" value="${this.config.token}">
+                </label>
+                <label>
+                    公开域名（可选，不填则使用原始URL）
+                    <input type="text" id="public-domain" value="${this.config.publicDomain}" placeholder="例如: r2.broyustudio.com">
+                </label>
+                <div class="button-container">
+                    <button id="save-config">Save</button>
+                    <button id="close-config">Close</button>
+                </div>
+            </div>
         `;
 
         document.body.appendChild(configDialog);
